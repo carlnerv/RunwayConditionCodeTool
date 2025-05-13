@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>跑道表面状况信息转换工具</title>
+    <link href="styles/style.css" rel="stylesheet">
+  <script src="scripts/main.js" defer></script>
+  </head>
+  <body>
+    <h1>跑道表面状况信息转换工具</h1>
+    <div>
+	  <label>日期</label>
+	  <input type="date" id="date" disabled>
+	  <label>发布时间(UTC)</label>
+	  <input type="time" id="time">
+      <button name="" type="button" id="btnCurTime">当前时间</button>
+	  <button name="" type="button" id="btnClnSel">清除选项</button>
+	</div>
+    <fieldset>
+      <legend>跑道:</legend>
+      <div class="RowRwy">
+        <div></div>
+        <div>
+          <input type="radio" id="rwy26" name="runway" value="26" checked>
+          <label for="rwy26">26</label>
+        </div>
+        <div>
+          <button name="" type="button" id="btnFilAll">&lt;=&gt;</button>
+          <label>MID</label>
+        </div>
+        <div>
+          <input type="radio" id="rwy08" name="runway" value="08">
+          <label for="rwy08">08</label>
+        </div>
+      </div>
+    </fieldset>
+      <div class="RowRwy">
+        <label>道面状况</label>
+        <div>
+          <select name="runwaySurface26" id="rwySf26-select">
+            <option value="">--请选择--</option>
+          </select>
+        </div>
+        <div>
+          <button name="" type="button" id="rwySfFil">&lt;=&gt;</button>
+          <select name="runwaySurfaceMid" id="rwySfMid-select">
+			<option value="">--请选择--</option>
+		  </select>
+        </div>
+        <div>
+          <select name="runwaySurface08" id="rwySf08-select">
+            <option value="">--请选择--</option>
+          </select>
+        </div>
+        <label>污染物种类</label>
+        <div>
+          <select name="polutionCat26" id="plCat26-select">
+			<option value="">--请选择--</option>
+		  </select>
+        </div>
+        <div>
+		  <button name="" type="button" id="plCatFil">&lt;=&gt;</button>
+          <select name="polutionCatMid" id="plCatMid-select">
+			<option value="">--请选择--</option>
+		  </select>
+        </div>
+        <div>
+          <select name="polutionCat" id="plCat08-select">
+			<option value="">--请选择--</option>
+		  </select>
+        </div>
+        <label>松散污染物深度（mm）</label>
+        <div>
+          <input id="plDp26" name="polutionDepth26" class="pDI" type="number" placeholder="-1为无报告" min="-1" list="plDpSuggestion">
+        </div>
+        <div>
+		  <button name="" type="button" id="plDpFil">&lt;=&gt;</button>
+          <input id="plDpMid" name="polutionDepthMid" class="pDI" type="number" placeholder="-1为无报告" min="-1" list="plDpSuggestion">
+        </div>
+        <div>
+          <input id="plDp08" name="polutionDepth08" class="pDI" type="number" placeholder="-1为无报告" min="-1" list="plDpSuggestion">
+        </div>
+        <label>污染物覆盖百分比%</label>
+		<div>
+		  <select name="polutionPct" id="plPct26-select">
+		    <option value="">--请选择--</option>
+		  </select>
+		</div>
+		<div>
+		  <button name="" type="button" id="plPctFil">&lt;=&gt;</button>
+		  <select name="polutionPct" id="plPctMid-select">
+		    <option value="">--请选择--</option>
+		  </select>
+		</div>
+		<div>
+		  <select name="polutionPct" id="plPct08-select">
+		    <option value="">--请选择--</option>
+		  </select>
+		</div>
+    </div>
+	<hr>
+    <div class="RowText">
+	  <button name="" type="button" id="btnClnStr">清除文本</button>
+      <button name="" type="button" id="btnGenStr">生成文本</button>
+	  <div></div>
+      <label>中文</label>
+	  <textarea id="taZh" name="zh" rows="2" ></textarea>
+      <button name="" type="button" id="btnZhCp">复制</button>
+      <label>英文</label>
+	  <textarea id="taEn" name="en" rows="2" ></textarea>
+      <button name="" type="button" id="btnEnCp">复制</button>
+      <label>ACARS</label>
+	  <textarea id="taAcars" name="acars" rows="2" ></textarea>
+      <button name="" type="button" id="btnAcCp">复制</button>
+    </div>
+	<hr>
+	<hr>
+	<h1>特殊天气现象</h1>
+	<div>
+	  <label>起始时间(UTC)</label>
+	  <input type="time" id="spStartTime">
+	  <label>结束时间(UTC)</label>
+	  <input type="time" id="spEndTime">
+      <!-- <button name="" type="button" id="btnCurTime">当前时间</button> -->
+	  <button name="" type="button" id="spBtnClnSel">清除选项</button>
+	</div>
+	<fieldset>
+      <legend>程度:</legend>
+      <div class="RowWeather">
+        <div></div>
+        <div>
+          <input type="radio" id="spLvNone" name="spLevel" value="0" checked>
+          <label for="spLvNone">无描述</label>
+        </div>
+        <div>
+          <input type="radio" id="spLvLight" name="spLevel" value="1">
+          <label for="spLvLight">轻度-Light</label>
+        </div>
+        <div>
+          <input type="radio" id="spLvModerate" name="spLevel" value="2">
+          <label for="spLvModerate">中度-Moderate</label>
+        </div>
+		<div>
+          <input type="radio" id="spLvSevere" name="spLevel" value="3">
+          <label for="spLvSevere">重度-Severe</label>
+        </div>
+      </div>
+    </fieldset>
+	<fieldset>
+      <legend>天气现象（必选）:</legend>
+      <div class="RowRwy" id="spWeather">
+        <div></div>
+        <div>
+          <input type="checkbox" id="spWs" name="spWeather">
+          <label for="spWs">风切变-Windshear</label>
+        </div>
+        <div>
+          <input type="checkbox" id="spTb" name="spWeather">
+          <label for="spTb">颠簸-Turbulence</label>
+        </div>
+        <div>
+          <input type="checkbox" id="spIc" name="spWeather">
+          <label for="spIc">积冰-Icing</label>
+        </div>
+      </div>
+    </fieldset>
+	<hr>
+    <div class="RowText">
+	  <button name="" type="button" id="spBtnClnStr">清除文本</button>
+      <button name="" type="button" id="spBtnGenStr">生成文本</button>
+	  <div></div>
+      <label>中文</label>
+	  <textarea id="spTaZh" name="zh" rows="2" ></textarea>
+      <button name="" type="button" id="spBtnZhCp">复制</button>
+      <label>英文</label>
+	  <textarea id="spTaEn" name="en" rows="2" ></textarea>
+      <button name="" type="button" id="spBtnEnCp">复制</button>
+      <label>ACARS</label>
+	  <textarea id="spTaAcars" name="acars" rows="2" ></textarea>
+      <button name="" type="button" id="spBtnAcCp">复制</button>
+    </div>
+	<hr>
+	<div class="aboutMe">XeonM 2025</div>
+	<datalist id="plDpSuggestion">
+	  <option value="-1">无报告（-1）</option>
+	</datalist>
+  </body>
+</html>
